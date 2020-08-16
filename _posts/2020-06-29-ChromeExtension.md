@@ -3,7 +3,7 @@ layout: post
 title: Chrome扩展
 excerpt: "Chrome扩展其实就是一个WebApp，包括一些html、js、css及其他一些可选的静态资源"
 date:   2020-06-29 8:51:00
-categories: [Web]
+categories: [WEB]
 comments: true
 ---
 
