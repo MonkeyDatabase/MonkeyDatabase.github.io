@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 网络空间测绘笔记
+title: ISC2020-网络空间测绘笔记
 excerpt: "本文是在观看ISC2020 网络空间测绘论坛所记下的笔记"
 date:   2020-08-16 09:16:00
 categories: [CyberSecurity]

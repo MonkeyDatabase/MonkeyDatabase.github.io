@@ -3,7 +3,7 @@ layout: post
 title:  "Firewall or IDS"
 date:   2020-04-15 21:00:00
 excerpt: "什么是防火墙?什么是入侵检测系统？它们有什么区别？"
-categories: [密码学]
+categories: [CyberSecurity]
 comments: true
 ---
 
