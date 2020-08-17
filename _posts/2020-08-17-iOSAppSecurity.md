@@ -2,8 +2,8 @@
 layout: post
 title: ISC2020-iOS应用网络服务安全审计
 excerpt: "本文是在观看ISC2020移动安全论坛的iOS应用网络服务安全审计的学习笔记"
-date:   2020-xx-xx xx:xx:00
-categories: [JVM]
+date:   2020-08-17 15:00:00
+categories: [CyberSecurity]
 comments: true
 ---
 
