@@ -2,8 +2,8 @@
 layout: post
 title: 浏览器被限定，如何解决
 excerpt: ""
-date:   2020-09-04 xx:xx:00
-categories: [JVM]
+date:   2020-09-04 12:00:00
+categories: [WEB]
 comments: true
 ---
 
