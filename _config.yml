@@ -14,7 +14,7 @@ keywords: ["blog", "cyber","security"]
 # Jekyll configuration
 ####################################
 #
-timezone:          Asia/Shanghai
+timezone:          +800 
 markdown:          kramdown
 highlighter:       rouge
 excerpt_separator: <!--more-->    
