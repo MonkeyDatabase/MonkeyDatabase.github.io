@@ -12,7 +12,6 @@ comments: true
 
 ### 1、调试捕获过滤器
 
->BPF接口手册可在[FreeBSD手册](https://www.freebsd.org/cgi/man.cgi?query=bpf&manpath=FreeBSD+12.1-RELEASE)中查看
 
 伯克利包过滤器BPF，以协议无关的形式提供指向数据链路层的原始接口，网络上所有的数据包，包括那些目的地址不是我们的包，都可以通过这种机制进行访问。
 
@@ -21,6 +20,8 @@ BPF以一种字符设备的形式存在，如“dev/bpf0”。在启动设备后
 每个次要设备需要单独的设备文件，如果文件已经被占用，打开文件会失败，errno被置为EBUSY。
 
 一个分组可以通过写入BPF文件描述符来发送到网络上。
+
+>BPF接口手册可在[FreeBSD手册](https://www.freebsd.org/cgi/man.cgi?query=bpf&manpath=FreeBSD+12.1-RELEASE)中查看
 
 用下面这条命令可以打印出该语句编译成的处理器语言：
 
@@ -58,7 +59,7 @@ Capturing on 'xxxxx* 12'
    struct ethhdr{
        unsigned char h_dest[ETH_ALEN]; 	//目的MAC
        unsigned char h_source[TEH_ALEN];	//源MAC
-       __be16 h_proto;						//2B协议字段
+       __be16 h_proto;	//2B协议字段
 }
    ```
    
