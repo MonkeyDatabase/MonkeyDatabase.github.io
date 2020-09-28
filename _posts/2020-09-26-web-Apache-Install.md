@@ -9,6 +9,8 @@ comments: true
 
 ## 安装流程
 
+> 不要安装在Kali Linux系统下，Kali中已经有apache2了
+
 1. 检查系统中是否已经有httpd程序在运行
 
    ```shell
@@ -21,7 +23,8 @@ comments: true
 
    ```shell
    gcc -v
-   #如果有返回信息，说明已经安装了GCC
+   #如果有返回信息，说明已经安装了GCC，若没有执行下面这条语句
+   sudo apt-get install build-essential
    ```
 
 3. 由于httpd安装需要依赖于APR、APR-Util、PCRE。将它们安装在/usr/local
@@ -71,6 +74,13 @@ comments: true
    sudo make install
    ```
 
+   * 可能会遇到找不到expat.h的问题，原因是缺少expat。安装之后需要重新探测环境，执行**configure**。
+
+     ```shell
+     sudo apt-get install  libexpat1-dev	#Ubuntu
+     sudo yum install -y expat-devel	#Centos
+     ```
+
 8. 安装pcre
 
    ```shell
@@ -83,7 +93,7 @@ comments: true
 9. 安装httpd
 
    ```shell
-   cd php-7.4.10
+   cd httpd-2.4.46
    sudo ./configure --prefix=/usr/local/httpd --with-pcre=/usr/local/pcre --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util
    sudo make
    sudo make install
@@ -115,6 +125,8 @@ comments: true
     ```shell
     sudo cp /usr/local/httpd/bin/apachectl /etc/rc.d/init.d/httpd #centos
     sudo cp /usr/local/httpd/bin/apachectl /etc/init.d/httpd #ubuntu、kali
+    
+    #重启电脑之后，就可以通过service控制httpd了
     ```
 
     * runlevel control directory，大多数Linux发行版本中，启动脚本都被放在*/etc/rc.d/init.d/*
