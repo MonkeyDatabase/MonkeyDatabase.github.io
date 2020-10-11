@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Web新手题-xff_referer
-excerpt: "攻防世界新手Web题目-xff_referer"
+title: Web进阶题-xff_referer
+excerpt: "攻防世界进阶Web题目-xff_referer"
 date:   2020-10-10 16:41:00
 categories: [CTF]
 comments: true
