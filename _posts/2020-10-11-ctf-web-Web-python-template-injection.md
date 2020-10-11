@@ -102,18 +102,17 @@ Flask的渲染方法有两种：
 * 模板文件，/template/index.html
 
   ```html
-  <!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
       <title>Title</title>
   </head>
   <body>
-      <h1>{{content}}</h1>
+      <h1>\{\{\content\}\}</h1>
   </body>
   </html>
   ```
-
+  
 * 访问结果，网页内容出现"Hello index"
 
 ### 3. 什么是SSTI？
