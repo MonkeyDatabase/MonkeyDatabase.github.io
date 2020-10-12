@@ -26,9 +26,11 @@ comments: true
 
 4. 题目名称为反序列化，则学习一下PHP反序列化相关的漏洞
 
-5. 构造反序列化对象xtcf，网址为*ip:port/?code=O:4:"xctf":1:s:4:"flag";s:5:"11111";}*，网页内容为”bad request“
+5. 构造反序列化对象xtcf，网址为*ip:port/?code=O:4:"xctf":1:{s:4:"flag";s:5:"11111";}*，网页内容为”bad request“
 
-6. 目前是反序列化出了xctf对象，但是反序列化unserialize()会先调用魔术方法wakeup，导致PHP脚本执行退出，所以需要绕过该魔术函数
+6. 目前是反序列化出了xctf对象，但是反序列化unserialize()会先调用魔术方法wakeup，导致PHP脚本执行退出，所以需要绕过该魔术函数.*ip:port/?code=O:4:"xctf":2:{s:4:"flag";s:5:"11111";}*
+
+7. 返回flag，提交答案正确。
 
 ## 独立思考
 
