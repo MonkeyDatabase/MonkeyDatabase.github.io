@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Web进阶题-php_rce
-excerpt: "攻防世界进阶Web题目-php_rce"
+title: Web进阶题-Web_php_include
+excerpt: "攻防世界进阶Web题目-Web_php_include"
 date:   2020-10-13 14:29:00
 categories: [CTF]
 comments: true
