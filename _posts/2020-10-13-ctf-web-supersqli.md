@@ -252,7 +252,28 @@ prepare ins from 'select `username` from user where id=?'
 * #，单行注释，后面不需要空格，平时可以使用这个注释，不容易忘记空格
 * /\*\*/，多行注释，可以用来绕过关键字过滤(根据情况而定)
 
-### 4. 本题有什么收获？
+### 4. 通过handler如何查询表中的数据？
+
+MySQL除了使用select查询表中的数据，也可以使用handler语句。
+
+* select语句一次返回所有记录
+* handler语句每次仅返回一条记录
+
+handler语句提供通往表的直接通道的存储引擎接口
+
+| 语句                                         | 作用                                     |
+| -------------------------------------------- | ---------------------------------------- |
+| handler *\[table_name\]* OPEN                | 打开一张表，声明一个名为table_name的句柄 |
+| handler *\[table_name\]* READ \{first/next\} | 读取第一行、读取下一行                   |
+| handler *\[table_name\]* CLOSE               | 关闭句柄                                 |
+
+所以本题中可以不使用预编译语句，仅使用handler就可找到答案(语句中的as p作为一个别名)
+
+```sql
+1';handler `1919810931114514` open as p;handler p read first;#
+```
+
+### 5. 本题有什么收获？
 
 1. SQL的单行注释使用两个横线后需要有空格才会生效
 2. show命令也很强大，除了无法接触到表内的内容
@@ -261,6 +282,8 @@ prepare ins from 'select `username` from user where id=?'
    * PHP中*mysqli_multi_query()*支持多条SQL语句同时执行
    * 实际情况中，往往使用*mysqli_query()*来查询数据库，这个方法只能执行一条语句，分号之后的内容不会被执行
 5. 当存在堆叠注入且能使用prepara和execute时，可以使用预编译语句绕过大多数正则表达式
+6. strstr是大小写敏感的，可以使用大小写绕过
+7. 正则表达式使用i控制符之后，是大小写不敏感的，此时大小写绕过将失效
 
 
 ## 产生过的疑问
@@ -268,5 +291,6 @@ prepare ins from 'select `username` from user where id=?'
 1. SQL注入有哪些常用的函数？
 2. SQL预编译语句有什么用法？
 3. SQL语句的注释有哪些？
-4. 本题有哪些收获？
+4. 通过handler如何查询表中的数据？
+5. 本题有哪些收获？
 
