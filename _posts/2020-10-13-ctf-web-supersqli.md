@@ -28,7 +28,7 @@ comments: true
    * 提交*1 and 1=1*，返回内容同第二步，正常返回
    * 所以此处存在SQL注入点
 
-4. 提交*1' union select \**，返回内容为"return preg_match("/select|update|delete|drop|insert|where|\./i",$inject);"，所以正则表达式是大小写不敏感的，因此大小写无法绕过
+4. 提交*1' union select \**，返回内容为"return preg_match("/select\|update\|delete\|drop\|insert\|where\|\./i",$inject);"，所以正则表达式是大小写不敏感的，因此大小写无法绕过
 
 5. 尝试Boolean-based注入爆破数据库信息：
 
