@@ -2,7 +2,7 @@
 layout: post
 title: Web进阶题-supersqli
 excerpt: "攻防世界进阶Web题目-supersqli"
-date:   2020-10-13 22:09:00
+date:   2020-10-15 22:09:00
 categories: [CTF]
 comments: true
 ---

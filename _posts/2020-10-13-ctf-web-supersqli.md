@@ -33,10 +33,10 @@ comments: true
 5. 尝试Boolean-based注入爆破数据库信息：
 
    * *1' and ORD(MID(DATABASE(),1,1))>'200*，使用这个可以当and后的语句为false值不一样时返回空
-   * 使用Burp Suite进行爆破数据库名，*1' and ORD(DATABASE(),x,1)=y*，通过编写的python脚本，爆破出数据库名为supersqli
-   * 使用Burp Suite进行爆破数据库名，*1' and ORD(USER(),x,1)=y*，爆破用户名为root@localhost
+   * 使用Burp Suite进行爆破数据库名，*1' and ORD(MID(DATABASE(),x,1))=y*，通过编写的python脚本，爆破出数据库名为supersqli
+   * 使用Burp Suite进行爆破数据库名，*1' and ORD(MID(USER(),x,1))=y*，爆破用户名为root@localhost
 
-6. 尝试堆叠注入，成功执行。之后尝试show命令，最终发现flag在ctftraining数据库下的FLAG_TABLE表的FLAG_COLUMN字段中。
+6. 尝试堆叠注入，成功执行。之后尝试show命令，发现一个flag在ctftraining数据库下的FLAG_TABLE表的FLAG_COLUMN字段中，该字段备注为not_flag。
 
    * *1'；show tables;'*，返回内容如下，所以当前数据库下有两张表，分别是191981093111451和words。
 
