@@ -187,23 +187,23 @@ Tornado中的处理URL的对象为handler，这些handler类都继承自RequestH
 
 [官方文档](https://tornado-zh.readthedocs.io/zh/latest/guide/templates.html)的模板和UI模块给出了一些可以访问的对象
 
-- `escape`: [`tornado.escape.xhtml_escape`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.xhtml_escape) 的别名
-- `xhtml_escape`: [`tornado.escape.xhtml_escape`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.xhtml_escape) 的别名
-- `url_escape`: [`tornado.escape.url_escape`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.url_escape) 的别名
-- `json_encode`: [`tornado.escape.json_encode`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.json_encode) 的别名
-- `squeeze`: [`tornado.escape.squeeze`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.squeeze) 的别名
-- `linkify`: [`tornado.escape.linkify`](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.linkify) 的别名
-- `datetime`: Python [`datetime`](https://docs.python.org/3.4/library/datetime.html#module-datetime) 模块
-- `handler`: 当前的 [`RequestHandler`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler) 对象
-- `request`: [`handler.request`](https://tornado-zh.readthedocs.io/zh/latest/httputil.html#tornado.httputil.HTTPServerRequest) 的别名
-- `current_user`: [`handler.current_user`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.current_user) 的别名
-- `locale`: [`handler.locale`](https://tornado-zh.readthedocs.io/zh/latest/locale.html#tornado.locale.Locale) 的别名
-- `_`: [`handler.locale.translate`](https://tornado-zh.readthedocs.io/zh/latest/locale.html#tornado.locale.Locale.translate) 的别名
-- `static_url`: [`handler.static_url`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.static_url) 的别名
-- `xsrf_form_html`: [`handler.xsrf_form_html`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.xsrf_form_html) 的别名
-- `reverse_url`: [`Application.reverse_url`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.Application.reverse_url) 的别名
-- 所有从 `ui_methods` 和 `ui_modules` `Application` 设置的条目
-- 任何传递给 [`render`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.render) 或 [`render_string`](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.render_string) 的关键字参数
+- escape: [tornado.escape.xhtml_escape](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.xhtml_escape) 的别名
+- xhtml_escape: [tornado.escape.xhtml_escape](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.xhtml_escape) 的别名
+- url_escape: [tornado.escape.url_escape](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.url_escape) 的别名
+- json_encode: [tornado.escape.json_encode](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.json_encode) 的别名
+- squeeze: [tornado.escape.squeeze](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.squeeze) 的别名
+- linkify: [tornado.escape.linkify](https://tornado-zh.readthedocs.io/zh/latest/escape.html#tornado.escape.linkify) 的别名
+- datetime: Python [datetime](https://docs.python.org/3.4/library/datetime.html#module-datetime) 模块
+- handler: 当前的 [RequestHandler](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler) 对象
+- request: [handler.request](https://tornado-zh.readthedocs.io/zh/latest/httputil.html#tornado.httputil.HTTPServerRequest) 的别名
+- current_user: [handler.current_user](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.current_user) 的别名
+- locale: [handler.locale](https://tornado-zh.readthedocs.io/zh/latest/locale.html#tornado.locale.Locale) 的别名
+- _: [handler.locale.translate](https://tornado-zh.readthedocs.io/zh/latest/locale.html#tornado.locale.Locale.translate) 的别名
+- static_url: [handler.static_url](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.static_url) 的别名
+- xsrf_form_html: [handler.xsrf_form_html](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.xsrf_form_html) 的别名
+- reverse_url: [Application.reverse_url](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.Application.reverse_url) 的别名
+- 所有从 ui_methods 和 ui_modules Application 设置的条目
+- 任何传递给 [render](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.render) 或 [render_string](https://tornado-zh.readthedocs.io/zh/latest/web.html#tornado.web.RequestHandler.render_string) 的关键字参数
 
 ## 产生过的疑问
 
