@@ -257,11 +257,11 @@ comments: true
   * 宏
 
     ```jinja2
-    {% macro input(name,age=18) %}   # 参数age的默认值为18
+    \{\% macro input(name,age=18) \%\}   # 参数age的默认值为18
      
      <input type='text' name="\{\{ name \}\}" value="\{\{ age \}\}" >
      
-    {% endmacro %}
+    \{\% endmacro \%\}
     ```
 
   * 父模板
