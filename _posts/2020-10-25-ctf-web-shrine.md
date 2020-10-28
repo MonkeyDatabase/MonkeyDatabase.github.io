@@ -238,19 +238,19 @@ comments: true
    * 每次调用外部函数返回内部函数时，都返回的是闭包，而不仅仅是内部函数，这样它每次都会读取都**生成该闭包时**的外围变量。每次调用。
    * 每次调用外部函数返回内部函数时，都返回的是新被定义的闭包，因为每次调用外围函数返回内部函数闭包时的外围变量不一定一样。
 
-### 3. Jinja2对于\{% %\}里的值如何处理？
+### 3. Jinja2对于\{\% \%\}里的值如何处理？
 
 在Jinja2中存在三种语法：
 
-* 控制结构\{% %\}
+* 控制结构\{\% \%\}
 
   * for循环
 
     ```jinja2
     <ul>
-    {% for user in users %}
+    \{\% for user in users \%\}
     <li>\{\{ user.username|title \}\}</li>
-    {% endfor %}
+    \{\% endfor \%\}
     </ul>
     ```
 
@@ -268,26 +268,26 @@ comments: true
 
     ```jinja2
     <head>
-        {% block head %}
+        \{\% block head \%\}
         <link rel="stylesheet" href="style.css"/>
-        <title>{% block title %}{% endblock %} - My Webpage</title>
-        {% endblock %}
+        <title>\{\% block title \%\}\{\% endblock \%\} - My Webpage</title>
+        \{\% endblock \%\}
     </head>
     ```
 
   * 继承和模板修改
 
     ```jinja2
-    {% extend "test.html" %}       # 继承test.html文件
+    \{\% extend "test.html" \%\}       # 继承test.html文件
      
-    {% block title %} Test {% endblock %}   # 定制title部分的内容
+    \{\% block title \%\} Test \{\% endblock \%\}   # 定制title部分的内容
      
-    {% block head %}
+    \{\% block head \%\}
         \{\{  super()  \}\}        # 用于获取原有的信息
         <style type='text/css'>
         .important { color: #FFFFFF }
         </style>
-    {% endblock %} 
+    \{\% endblock \%\} 
     
     #未修改的使用父模板的内容
     ```
@@ -437,7 +437,7 @@ from .signals import message_flashed
 
 1. Flask框架路由的变量规则有哪些？
 2. Python的函数机制有哪些？
-3. Jinja2对于\{% %\}里的值如何处理？
+3. Jinja2对于\{\% \%\}里的值如何处理？
 4. 本题为什么黑名单还要禁用self？
 5. Jinja2执行时上下文中有哪些存在的对象？
 6. 为什么\_\_globals\_\_可以导出这么多信息？
