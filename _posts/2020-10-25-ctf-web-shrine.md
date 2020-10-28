@@ -36,8 +36,8 @@ comments: true
            s = s.replace('(', '').replace(')', '')
            #设置黑名单，config、self
            blacklist = ['config', 'self']
-           #用\{% set config=None%\}\{% set self=None%\}拼接之前过滤到()的字符串
-           return ''.join(['\{\{% set \{\}=None%\}\}'.format(c) for c in blacklist]) + s
+           #用\{\% set config=None\%\}\{\% set self=None\%\}拼接之前过滤到()的字符串
+           return ''.join(['\{\{\% set \{\}=None\%\}\}'.format(c) for c in blacklist]) + s
    
        #渲染
        return flask.render_template_string(safe_jinja(shrine))
@@ -183,7 +183,7 @@ comments: true
        def safe_jinja(s):
            s = s.replace('(', '').replace(')', '')
            blacklist = ['config', 'self']
-           return ''.join(['\{\{% set \{\}=None%\}\}'.format(c) for c in blacklist]) + s
+           return ''.join(['\{\{\% set \{\}=None\%\}\}'.format(c) for c in blacklist]) + s
    
        return flask.render_template_string(safe_jinja(shrine))
    ```
