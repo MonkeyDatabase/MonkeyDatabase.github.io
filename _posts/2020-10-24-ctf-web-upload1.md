@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Web进阶题-PHP2
-excerpt: "攻防世界进阶Web题目-PHP2"
+title: Web进阶题-upload1
+excerpt: "攻防世界进阶Web题目-upload1"
 date:   2020-10-24 14:16:00
 categories: [CTF]
 comments: true
