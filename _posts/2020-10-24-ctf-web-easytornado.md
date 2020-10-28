@@ -64,15 +64,15 @@ comments: true
 
 8. 由于之前做过的Flask渲染模板注入题目，加之"welcome.txt"中的render，开始研究渲染中的注入
 
-   * 尝试"/error?msg={{"".\_\_class\_\_}}"，网页返回ORZ，尝试多次后，发现**魔术方法**均不能使用，所以之前Flask的SSTI攻击方法就**不可用**了，无法通过子类、父类、实例化来进行调用os等模块，所以只能调用当前处理函数可以访问到的已经实例化的对象
+   * 尝试"/error?msg=\{\{"".\_\_class\_\_\}\}"，网页返回ORZ，尝试多次后，发现**魔术方法**均不能使用，所以之前Flask的SSTI攻击方法就**不可用**了，无法通过子类、父类、实例化来进行调用os等模块，所以只能调用当前处理函数可以访问到的已经实例化的对象
 
-   * 当访问到"/error?msg={{handler}}",网页返回内容为"\_\_main\_\_.ErrorHandler object at 0x7fc20053e710>"
+   * 当访问到"/error?msg=\{\{handler\}\}",网页返回内容为"\_\_main\_\_.ErrorHandler object at 0x7fc20053e710>"
 
    * 在Pycharm中查看可利用的ErrorHandler的函数，发现它继承自RequestHandler
 
    * 查看ReuqestHandler源码，发现与settings方法
 
-   * 访问"/error?msg={{handler.settings}}"，网页没有返回ORZ，网页返回内容如下
+   * 访问"/error?msg=\{\{handler.settings\}\}"，网页没有返回ORZ，网页返回内容如下
 
      ```txt
      {'autoreload': True, 'compiled_template_cache': False, 'cookie_secret': '3b454adf-5caa-4fb8-8d78-b1df4c7af327'}
