@@ -80,7 +80,7 @@ Flask的渲染方法有两种：
   return render_template_string(html)
   ```
 
-模板并不是单纯的html代码，而是加载着模板语法的html文件。Flask采用Jinja2作为渲染引擎，{{}}在Jinja2中作为变量包裹标识符。类似于Github Pages的生成方法，页面是需要变化的，所以存在一些模板的占位符。
+模板并不是单纯的html代码，而是加载着模板语法的html文件。Flask采用Jinja2作为渲染引擎，\{\{\}\}在Jinja2中作为变量包裹标识符。类似于Github Pages的生成方法，页面是需要变化的，所以存在一些模板的占位符。
 
 模板默认是在网站根目录下新建templates文件夹，文件夹内存放html模板文件。(模板文件位置可以通过配置文件修改)
 

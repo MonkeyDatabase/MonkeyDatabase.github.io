@@ -37,7 +37,7 @@ comments: true
            #设置黑名单，config、self
            blacklist = ['config', 'self']
            #用{% set config=None%}{% set self=None%}拼接之前过滤到()的字符串
-           return ''.join(['{{% set {}=None%}}'.format(c) for c in blacklist]) + s
+           return ''.join(['\{\{% set \{\}=None%\}\}'.format(c) for c in blacklist]) + s
    
        #渲染
        return flask.render_template_string(safe_jinja(shrine))
@@ -183,7 +183,7 @@ comments: true
        def safe_jinja(s):
            s = s.replace('(', '').replace(')', '')
            blacklist = ['config', 'self']
-           return ''.join(['{{% set {}=None%}}'.format(c) for c in blacklist]) + s
+           return ''.join(['\{\{% set \{\}=None%\}\}'.format(c) for c in blacklist]) + s
    
        return flask.render_template_string(safe_jinja(shrine))
    ```
@@ -249,7 +249,7 @@ comments: true
     ```jinja2
     <ul>
     {% for user in users %}
-    <li>{{ user.username|title }}</li>
+    <li>\{\{ user.username|title \}\}</li>
     {% endfor %}
     </ul>
     ```
@@ -259,7 +259,7 @@ comments: true
     ```jinja2
     {% macro input(name,age=18) %}   # 参数age的默认值为18
      
-     <input type='text' name="{{ name }}" value="{{ age }}" >
+     <input type='text' name="\{\{ name \}\}" value="\{\{ age \}\}" >
      
     {% endmacro %}
     ```
@@ -283,7 +283,7 @@ comments: true
     {% block title %} Test {% endblock %}   # 定制title部分的内容
      
     {% block head %}
-        {{  super()  }}        # 用于获取原有的信息
+        \{\{  super()  \}\}        # 用于获取原有的信息
         <style type='text/css'>
         .important { color: #FFFFFF }
         </style>
