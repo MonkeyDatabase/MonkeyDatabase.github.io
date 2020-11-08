@@ -244,8 +244,48 @@ Upgrade-Insecure-Requests: 1
   * \<body onhashchange="func();"\>
   * window.addEventListener("hashchange",func,false)
 
+### 3. or在Web方面的应用有哪些？如何应用于渗透？
+
+* Java
+
+  ```java
+  public class main {
+      public static void main(String[] args) {
+          System.out.println((1<2 && 2>=2));	//true
+          System.out.println((1<2 || 2>=2));	//true
+          //System.out.println(false and true);该语句出错
+      }
+  }
+  ```
+
+  * Java中没有and和or运算符
+  * \&\&、\|\|两个操作符只能作用于逻辑表达式，不能直接作用于数值
+
+* Python Flask
+
+  * and、or逻辑运算符
+  * 无\&\&、\|\|运算符
+
+* PHP
+
+  * and和\&\&为逻辑与
+  * or和\|\|为逻辑或
+  
+* SQL
+
+  * 标准语句的逻辑运算符为AND、OR
+  * 仅有Mysql支持\&\&、\|\|，其他数据库不支持
+  * 尽量使用标准语法
+
+or在渗透中的作用主要是在代码注入时无法保证注入后代码仍能通过审核。
+
+> 如本题assert在字符串被当作PHP执行结束后的结果为真，而如果是正常的代码注入封闭掉原有函数那第一个assert被封闭的函数为一个参数，第二个assert被封闭的函数为两个参数，常规的代码注入无法通过两次校验，而or就可以解决这个问题。
+>
+> 完全不用担心参数个数的问题，原有函数执行就会出错，而只要我们注入的函数执行不出错，通过or逻辑运算符最终整体函数就相当于没有出错。
+
 ## 产生过的疑问
 
 1. 为什么直接在浏览器中输入#，服务器端会显示运行出错？
 2. #在Web中的作用有哪些？
+3. or在Web方面的应用有哪些？如何应用于渗透？
 
