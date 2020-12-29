@@ -3,7 +3,7 @@ layout: post
 title: 双指针法
 excerpt: "在刷算法题的过程中，常常遇到双指针法，本文将记录一下双指针法的学习笔记"
 date:   2020-12-29 13:20:00
-categories: [Code]
+categories: [code]
 comments: true
 ---
 
