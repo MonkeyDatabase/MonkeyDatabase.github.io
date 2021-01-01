@@ -48,4 +48,5 @@ size()是Java中Collection\<E\>接口和Map\<K,V\>接口的方法，用于返回
   * ConcurrentMap
   * HashMap
   * TreeMap
+  * HashTable
   * .......
