@@ -3,7 +3,7 @@ layout: post
 title: 归并排序
 excerpt: "在刷算法题的过程中，常常遇到排序，归并排序分而治之的方法十分有效，可以大大避免超时的问题，因此本文记录一些归并排序相关的知识"
 date:   2020-12-31 14:18:00
-categories: [Code]
+categories: [code]
 comments: true
 ---
 
@@ -74,42 +74,81 @@ public class MergeSort{
 #### 1.2 程序代码
 
 ```java
-    class Solution {
-        int count=0;
-        public int reversePairs(int[] nums) {
-            int[] tmp=new int[nums.length];
-            mergesort(nums,tmp,0,nums.length-1);
-            return count;
-        }
+class Solution {
+    int count=0;
+    public int reversePairs(int[] nums) {
+        int[] tmp=new int[nums.length];
+        mergesort(nums,tmp,0,nums.length-1);
+        return count;
+    }
 
-        public void mergesort(int[] nums,int[] tmp,int low,int high){
-            if(low<high){
-                int mid=(low+high)/2;
-                mergesort(nums,tmp,low,mid);
-                mergesort(nums,tmp,mid+1,high);
-                if(nums[mid]>nums[mid+1])
-                    merge(nums,tmp,low,mid,high);
-            }
-        }
-
-        public void merge(int[] nums,int[] tmp,int low,int mid,int high){
-            int i=0,j=low,k=mid+1;
-            while(j<=mid&&k<=high){
-                if(nums[j]<=nums[k])
-                    tmp[i++]=nums[j++];
-                else{
-                    tmp[i++]=nums[k++];
-                    count+=(mid-j+1);
-                }
-                    
-            }
-            while(j<=mid)
-                tmp[i++]=nums[j++];            
-            while(k<=high)
-                tmp[i++]=nums[k++];
-            for(int t=0;t<i;t++)
-                nums[t+low]=tmp[t];
+    public void mergesort(int[] nums,int[] tmp,int low,int high){
+        if(low<high){
+            int mid=(low+high)/2;
+            mergesort(nums,tmp,low,mid);
+            mergesort(nums,tmp,mid+1,high);
+            if(nums[mid]>nums[mid+1])
+                merge(nums,tmp,low,mid,high);
         }
     }
+
+    public void merge(int[] nums,int[] tmp,int low,int mid,int high){
+        int i=0,j=low,k=mid+1;
+        while(j<=mid&&k<=high){
+            if(nums[j]<=nums[k])
+                tmp[i++]=nums[j++];
+            else{
+                tmp[i++]=nums[k++];
+                count+=(mid-j+1);
+            }
+
+        }
+        while(j<=mid)
+            tmp[i++]=nums[j++];            
+        while(k<=high)
+            tmp[i++]=nums[k++];
+        for(int t=0;t<i;t++)
+            nums[t+low]=tmp[t];
+    }
+}
+```
+
+### 2、合并两个排序的链表
+
+题目地址为[剑指Offer 25](https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)
+
+#### 2.1 解题思路
+
+1. 由于是合并两个排序的链表，和归并排序很类似
+
+2. 底层存储结构采用了链表，而不是数组所以插入操作的时间复杂度为O(1)
+
+   * 不用像原本的归并排序一样占用大量的辅助空间
+
+   * 不用复制每一个节点到一个新的位置，只需将另一个链表按顺序插入当一个链表中，且能保持有序
+
+   * 不用像数组存储结构时循环依次复制，而只需用指针指向剩余部分的头
+
+#### 2.2 程序代码
+
+```java
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode head=new ListNode(0),p=head;
+        while(l1!=null&&l2!=null){
+            if(l1.val<l2.val){
+                p.next=l1;
+                l1=l1.next;
+            }
+            else{
+                p.next=l2;
+                l2=l2.next;
+            }
+            p=p.next;
+        }
+        p.next = (l1!=null) ? l1:l2;
+        return head.next;
+    }
+}
 ```
 
