@@ -2,7 +2,7 @@
 layout: post
 title: length、length()、size()的区别
 excerpt: "Java中相近词辨析"
-date:   2020-01-01 18:29:00
+date:   2021-01-01 18:29:00
 categories: [Java]
 comments: true
 ---
