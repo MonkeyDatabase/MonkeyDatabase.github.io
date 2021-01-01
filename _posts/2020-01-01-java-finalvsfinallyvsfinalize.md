@@ -1,7 +1,7 @@
 ---
 layout: post
 title: final、finally、finally的区别
-excerpt: ""
+excerpt: "Java中相近词辨析"
 date:   2020-01-01 18:17:00
 categories: [Java]
 comments: true
