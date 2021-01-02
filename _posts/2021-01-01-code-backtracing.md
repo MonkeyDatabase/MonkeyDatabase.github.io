@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 回溯法与剪枝
-excerpt: "在刷算法题的过程中，常常遇到剪枝这个词，一般这种情况伴随着超时问题，回溯法可以大大缓解超时的问题，因此本文记录一些回溯法相关的知识"
+excerpt: "在刷算法题的过程中，有些复杂问题使用for循环暴力破解都无法解决，回溯法可有效解决这些复杂问题(组合、子集、切割、排列、棋盘)，因此本文记录一些回溯法相关的知识"
 date:   2021-01-01 16:28:00
 categories: [code]
 comments: true
@@ -124,10 +124,6 @@ class Solution {
 }
 ```
 
-
-
-
-
 ### 3、组合
 
 题目地址为[Leetcode 77](https://leetcode-cn.com/problems/combinations/)
@@ -182,3 +178,157 @@ class Solution {
 }
 ```
 
+### 4、全排列
+
+题目地址为[Leetcode 46](https://leetcode-cn.com/problems/permutations/)
+
+#### 4.1 思路分析
+
+1. 本题所给出的数字的序列中**不含重复**的数字，所以不需要剪枝
+2. 组合的特点是收集路径，排列的特点是交换元素收集节点
+3. 递归的结束条件是收集到的path长度等于输入序列元素的个数，
+4. 与组合和子集**不同**的是排列是要收集所有输入序列的元素，即当startindex=10的时候，也是要从0开始遍历，而不是不要startindex前面的元素，此时需要遍历整个数组，而且已经选过的元素不能再次选，本题是**不含重复**的数字，所以只需要把**选过的值**缓存到一个Set集合中，每层逻辑中遍历整个数组而且选那些不在Set中的元素进行收集和递归。
+
+#### 4.2 程序代码
+
+```java
+class Solution {
+    List<Integer> path=new ArrayList<Integer>();
+    Set<Integer> set=new HashSet<Integer>();
+    List<List<Integer>> result=new ArrayList<List<Integer>>();
+    public List<List<Integer>> permute(int[] nums) {
+        backtracing(nums);
+        return result;
+    }
+
+    public void backtracing(int[] nums){
+        if(path.size()==nums.length){
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(set.contains(nums[i]))
+                continue;
+            path.add(nums[i]);
+            set.add(nums[i]);
+            backtracing(nums);
+            set.remove(nums[i]);
+            path.remove(path.size()-1);
+        }
+    }
+}
+```
+
+### 5、全排列II
+
+题目地址为[Leetcode 47](https://leetcode-cn.com/problems/permutations-ii/)
+
+#### 5.1 解题思路
+
+1. 本题包含**重复**数字，所以4中只用一个Set标识值选没选过是不可以的
+2. 例如[1,2,2,3]
+   1. [1,2(1),3]和[1,2(2),3]是一样的，剪枝掉相同元素在同一层中的选择
+   2. [1,2(1),2(2)]和[1,2(2),2(1)]是一样的，剪枝掉相同元素，在两个不同层位置颠倒的选择
+3. 难点在于解决第二种剪枝操作
+4. 首先要将这两个不同层的深度差距固定下来，即对数组进行排序，这样选[1,2(1)]紧接着后2(2)还没访问过就可以放入集合，当选[1,2(2)]时，再选2(1)的话，2(1)在数组中紧挨着2(2)，因为已经选了2(2),2(2)与2(1)相同，这种情况已经被[1,2(1)]后选2(2)包括。
+
+#### 5.2 程序代码
+
+``` java
+class Solution {
+    List<Integer> path=new ArrayList<Integer>();
+    List<List<Integer>> result =new ArrayList<List<Integer>>();
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        boolean[] visited = new boolean[nums.length];
+        Arrays.sort(nums);
+        backtracing(nums,visited);
+        return result;
+    }
+
+    public void backtracing(int[] nums,boolean[] visited){
+        if(path.size()==nums.length){
+            result.add(new ArrayList<Integer>(path));
+            return;
+        }
+        
+        for(int i=0;i<nums.length;i++){
+            if(visited[i]||i!=0&&nums[i]==nums[i-1]&&visited[i-1]==false)
+                continue;
+            path.add(nums[i]);
+            visited[i]=true;
+            backtracing(nums,visited);
+            path.remove(path.size()-1);
+            visited[i]=false;
+        }
+    }
+}
+```
+
+### 6、分割回文串
+
+题目地址为[Leetcode 131](https://leetcode-cn.com/problems/palindrome-partitioning/)
+
+#### 6.1 解题思路
+
+1. 切割问题是将原序列分割，与组合问题恰恰相反
+2. 每一层递归加一条切割线，切割线的左右两侧均为回文串
+
+#### 6.2 程序代码
+
+```java
+class Solution {
+    List<String> path = new ArrayList<String>();
+    List<List<String>> result = new ArrayList<List<String>>();
+    public List<List<String>> partition(String s) {
+        backtracing(s,0);
+        return result;
+    }
+
+    public void backtracing(String s,int startindex){
+        if(startindex==s.length()){
+            result.add(new ArrayList<String>(path));
+            return;
+        }        
+        for(int i=startindex+1;i<=s.length();i++){
+            String str=s.substring(startindex,i);
+            if(isPalindrome(str)){
+                path.add(str);
+            }else{
+                continue;
+            }
+            backtracing(s,i);
+            path.remove(path.size()-1);
+        }
+    }
+
+    public boolean isPalindrome(String s){
+        for(int i=0,j=s.length()-1;i<j;i++,j--){
+            if(s.charAt(i)!=s.charAt(j))
+                return false;
+        }
+        return true;
+    }
+}
+```
+
+
+
+## 总结
+
+1. 重复：如果输入含有重复元素，需要对其进行排序，以便每次递归时辨别重复情况，因为此时重复元素是相邻的，使用数组下标就可以判断。
+2. 子集
+   * 顺序无关
+   * startindex去重
+   * 收集到达所有节点的路径
+3. 组合
+   * 顺序无关
+   * startindex去重
+   * 收集到达满足组合条件的叶子节点的路径
+4. 排列
+   * 顺序有关
+   * visited去重
+   * 收集所有长度与输入数据长度相同的路径
+5. 分割
+   * 分割点顺序无关
+   * startindex去重
+   * 收集到达叶子节点的路径
