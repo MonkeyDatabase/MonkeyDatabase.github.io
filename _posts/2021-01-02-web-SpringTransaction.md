@@ -3,7 +3,7 @@ layout: post
 title: Spring事务
 excerpt: "本文记录了Spring事务、事物的四个特性、Spring事务的种类及写法、隔离机制、传播特性相关的笔记"
 date:   2021-01-02 15:15:00
-categories: [WEB Java]
+categories: [WEB]
 comments: true
 ---
 

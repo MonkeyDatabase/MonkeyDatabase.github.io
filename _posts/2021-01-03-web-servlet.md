@@ -3,7 +3,7 @@ layout: post
 title: Servlet
 excerpt: "Java Servlet是Java Web的基础，只有理解了Java Servlet才能更好地理解Spring等Web 框架"
 date:   2021-01-03 09:16:00
-categories: [WEB Java]
+categories: [WEB]
 comments: true
 ---
 

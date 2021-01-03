@@ -3,7 +3,7 @@ layout: post
 title: SpringMVC
 excerpt: "之前多次看过SpringMVC的流程，但都没有详细记录，本文将记录SpringMVC的流程"
 date:   2021-01-02 19:57:00
-categories: [WEB Java]
+categories: [WEB]
 comments: true
 ---
 
