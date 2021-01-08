@@ -152,3 +152,30 @@ class Solution {
 }
 ```
 
+### 3、合并两个有序数组
+
+题目地址为[Leetcode 88](https://leetcode-cn.com/problems/merge-sorted-array/)
+
+#### 3.1 解题思路
+
+1. 此题两个数组都为有序，使用归并排序最快
+2. 本题有一个巧妙的点就是不能用辅助空间，要把第二个数组合并到第一个数组中。我们学过的归并排序是从低排到高，本题中第一个数组高地址存储的全为0，因此此题可以采用从高地址排到低地址，而且只要最后对第二个数组判断有没有空
+
+#### 3.2 程序代码
+
+```java
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i=m+n-1,j=m-1,k=n-1;
+        while(j>-1&&k>-1){
+            if(nums1[j]>nums2[k])
+                nums1[i--]=nums1[j--];
+            else
+                nums1[i--]=nums2[k--];
+        }
+        while(k>-1)
+            nums1[i--]=nums2[k--];
+    }
+}
+```
+

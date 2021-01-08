@@ -94,3 +94,60 @@ class Solution {
 }
 ```
 
+### 3、搜索旋转排序数组
+
+#### 3.1 解题思路
+
+1. 虽然数组被旋转后，整体不再有序，但是使用二分法的话，还是会有一半是单调的，判断它是否单调是通过low和high的值的大小，因为旋转后分成了两半各自有序
+
+#### 3.2 程序代码
+
+```java
+class Solution {
+    public int search(int[] nums, int target) {
+
+        int low=0,high=nums.length-1;
+
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target)
+                return mid;
+            if(nums[low]<=nums[mid]){
+                if(nums[low]<=target&&nums[mid]>target)
+                    high=mid-1;
+                else
+                    low=mid+1;
+            }else{
+                if(nums[mid]<target&&nums[high]>=target)
+                    low=mid+1;
+                else
+                    high=mid-1;
+            }
+        }
+
+        return -1;
+    }
+
+    public int binarySearch(int[] nums,int target,int low,int high){
+        if(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target)
+                return mid;
+            if(nums[low]<=nums[mid]){
+                if(nums[low]<=target&&nums[mid]>target)
+                    return binarySearch(nums,target,low,mid-1);
+                else
+                    return binarySearch(nums,target,mid+1,high);
+            }
+            else{
+                if(nums[mid]<target&&nums[high]>=target)
+                    return binarySearch(nums,target,mid+1,high);
+                else
+                    return binarySearch(nums,target,low,mid-1);
+            }
+        }
+        return -1;
+    }
+}
+```
+

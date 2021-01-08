@@ -282,5 +282,40 @@ class Solution {
 }
 ```
 
+### 7、无重复字符的最长子串
 
+题目地址为[Leetcode 3](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+
+#### 7.1 解题思路
+
+1. 要在一个字符串中找无重复字符的字符串，需要用双指针分别指向目标字符串的头和尾
+2. 因此起始条件为
+   * 左指针指向第一个元素
+   * 右指针指向第二个元素
+3. 由于要判断right正指向的元素在不在left到right中间，所以采用HashMap进行存储出现过的字符最后一次出现的位置，HashMap的特性是当put的时候如果之前有过相同的key则直接覆盖value
+4. 当出现相同的时候，需要把left移动到重复字母在left和right之间最后一次出现的位置之后
+5. 由于HashMap中存储的是它最后一次出现的位置，所以当冲突的时候，也可能冲突字符在left之前，因为每次left跳变都会跳到上一次冲突之后的位置，中间跳过了许多元素
+
+#### 7.2 程序代码
+
+```java
+class Solution {
+    public int result=0;
+    public int left=0;
+    public HashMap<Character,Integer> map=new  HashMap<Character,Integer>();
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length()==0)
+            return 0;
+        map.put(s.charAt(0),0);
+        for(int right=1;right<s.length();right++){
+            if(map.containsKey(s.charAt(right))){
+                left=Math.max(left,map.get(s.charAt(right))+1);
+            }
+            map.put(s.charAt(right),right);
+            result=Math.max(result,right-left+1);
+        }
+        return result;
+    }
+}
+```
 
