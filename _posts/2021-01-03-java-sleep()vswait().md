@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sleep()和wait方法的区别
+title: sleep()和wait()方法的区别
 excerpt: "Java中相近词辨析"
 date:   2021-01-03 09:53:00
 categories: [Java]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: final、finally、finally的区别
+title: final、finally、finalize的区别
 excerpt: "Java中相近词辨析"
 date:   2021-01-01 18:17:00
 categories: [Java]
