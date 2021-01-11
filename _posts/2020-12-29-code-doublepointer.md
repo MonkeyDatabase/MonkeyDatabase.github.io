@@ -319,3 +319,53 @@ class Solution {
 }
 ```
 
+### 8、奇偶链表
+
+题目地址为[Leetcode 328](https://leetcode-cn.com/problems/odd-even-linked-list/)
+
+#### 8.1 解题思路
+
+1. 双指针o，t
+   * o指向奇数节点链头
+   * t指向偶数节点链头
+2. 双指针otail，ttail
+   * otail指向奇数链链尾
+   * ttail指向偶数链链尾
+3. 通过一个循环进行遍历，循换持续条件为ttail.next不为空，即有下一个奇数节点
+   * 将下一个奇数节点连入otail后面
+     * otail.next=ttail.next;
+     * otail=otail.next;
+   * 检查是否有下一个偶数节点otial.next不为空
+     * 如果不为空，说明有下一个偶数节点
+       * ttial.next=otail.next;
+       * ttail=ttail.next;
+     * 如果为空，说明没有下一个偶数节点，此时的ttail.next为otail，为了避免链表有环，所以需要断开
+       * tttail.next=null
+
+#### 8.2 程序代码
+
+```java
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null||head.next==null)
+            return head;
+        ListNode o=head,otail=o,ttail=t;
+        while(ttail.next!=null){
+            otail.next=ttail.next;
+            otail=otail.next;
+            if(otail.next!=null){
+                ttail.next=otail.next;
+                ttail=ttail.next;
+            }
+            else
+                ttail.next=null; 
+        }
+        otail.next=t;
+        return o;
+        
+    }
+}
+```
+
+
+
