@@ -2,7 +2,7 @@
 layout: post
 title: synchronized锁底层
 excerpt: "synchronized关键字由C++语言实现，因为它在并发场景下的性能问题技术大牛开发出了JUC包来缓解并发问题，之后synchronized奋发图强在JDK1.6中进行了锁优化，本文将介绍synchronized目前的实现原理"
-date:   2021-01-08 14:27:00
+date:   2021-01-11 14:27:00
 categories: [Java]
 comments: true
 ---
